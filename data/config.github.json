@@ -37,13 +37,13 @@
         "name": "量子位",
         "url": "https://wechat2rss.xlab.app/feed/7131b577c61365cb47e81000738c10d872685908.xml",
         "enabled": true,
-        "category": "ai"
+        "category": "ai-news"
       },
       {
         "name": "新智元",
         "url": "https://wechat2rss.xlab.app/feed/ede30346413ea70dbef5d485ea5cbb95cca446e7.xml",
         "enabled": true,
-        "category": "ai"
+        "category": "ai-news"
       },
       {
         "name": "InfoQ 中文站",
@@ -55,49 +55,31 @@
         "name": "Machine Learning Mastery",
         "url": "https://machinelearningmastery.com/feed/",
         "enabled": true,
-        "category": ""
+        "category": "ai-news"
       },
       {
         "name": "OpenAI Blog",
         "url": "https://openai.com/blog/rss.xml",
         "enabled": true,
-        "category": ""
-      },
-      {
-        "name": "Sebastian Raschka",
-        "url": "https://sebastianraschka.com/rss_feed.xml",
-        "enabled": true,
-        "category": ""
-      },
-      {
-        "name": "The Batch",
-        "url": "https://www.deeplearning.ai/the-batch/feed/",
-        "enabled": true,
-        "category": ""
-      },
-      {
-        "name": "The Gradient",
-        "url": "https://thegradient.pub/rss/",
-        "enabled": true,
-        "category": ""
+        "category": "ai-news"
       },
       {
         "name": "Stanford AI Lab (SAIL) Blog",
         "url": "https://ai.stanford.edu/blog/feed.xml",
         "enabled": true,
-        "category": ""
+        "category": "ai-news"
       },
       {
         "name": "Ars Technica AI",
         "url": "http://feeds.arstechnica.com/arstechnica/artificial-intelligence",
         "enabled": true,
-        "category": ""
+        "category": "ai-news"
       },
       {
         "name": "AI Weekly",
         "url": "https://aiweekly.co/issues.rss",
         "enabled": true,
-        "category": ""
+        "category": "ai-news"
       },
       {
         "name": "The Economist",
@@ -109,37 +91,25 @@
         "name": "Last Week in AI",
         "url": "https://lastweekin.ai/feed",
         "enabled": true,
-        "category": ""
+        "category": "ai-news"
       },
       {
         "name": "The Pragmatic Engineer",
         "url": "https://newsletter.pragmaticengineer.com/feed",
         "enabled": true,
-        "category": ""
+        "category": "technology"
       },
       {
         "name": "AINews (Buttondown)",
         "url": "https://buttondown.com/ainews/rss",
         "enabled": true,
-        "category": ""
-      },
-      {
-        "name": "BBC Learning English",
-        "url": "http://www.bbc.co.uk/learningenglish/english/features/6-minute-english/rss",
-        "enabled": true,
-        "category": ""
-      },
-      {
-        "name": "Anavem.com",
-        "url": "https://www.anavem.com/en/rss.xml",
-        "enabled": true,
-        "category": ""
+        "category": "ai-news"
       },
       {
         "name": "GitHub Changelog",
         "url": "https://github.blog/changelog/feed/",
         "enabled": true,
-        "category": ""
+        "category": "technology"
       },
       {
         "name": "GitHub Blog",
@@ -151,7 +121,7 @@
         "name": "OpenAI News",
         "url": "https://openai.com/news/rss.xml",
         "enabled": true,
-        "category": "ai"
+        "category": "ai-news"
       }
     ],
     "reddit": {
@@ -231,11 +201,11 @@
     "time_window_hours": 24,
     "max_items": 10,
     "category_groups": {
-      "ai": {
+      "cs": {
         "limit": 5,
         "categories": [
           "ai-news",
-          "ai-tools"
+          "technology"
         ]
       },
       "default": {
