@@ -207,16 +207,10 @@
           "ai-news",
           "technology"
         ]
-      },
-      "default": {
-        "limit": 10,
-        "categories": [
-          "other"
-        ]
       }
     },
     "default_group": "other",
-    "default_group_limit": null
+    "default_group_limit": 10
   },
   "email": null,
   "webhook": null
