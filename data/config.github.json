@@ -132,7 +132,7 @@
           "enabled": true,
           "sort": "hot",
           "time_filter": "day",
-          "fetch_limit": 15,
+          "fetch_limit": 3,
           "min_score": 60
         },
         {
@@ -140,7 +140,7 @@
           "enabled": true,
           "sort": "hot",
           "time_filter": "day",
-          "fetch_limit": 15,
+          "fetch_limit": 3,
           "min_score": 60
         },
         {
@@ -148,7 +148,7 @@
           "enabled": true,
           "sort": "hot",
           "time_filter": "day",
-          "fetch_limit": 15,
+          "fetch_limit": 3,
           "min_score": 60
         },
         {
@@ -156,7 +156,7 @@
           "enabled": true,
           "sort": "hot",
           "time_filter": "day",
-          "fetch_limit": 15,
+          "fetch_limit": 3,
           "min_score": 60
         },
         {
@@ -164,7 +164,7 @@
           "enabled": true,
           "sort": "hot",
           "time_filter": "day",
-          "fetch_limit": 15,
+          "fetch_limit": 3,
           "min_score": 60
         }
       ],
@@ -177,7 +177,7 @@
         {
           "channel": "zaihuapd",
           "enabled": true,
-          "fetch_limit": 20
+          "fetch_limit": 5
         }
       ]
     },
@@ -202,7 +202,7 @@
     "max_items": 10,
     "category_groups": {
       "cs": {
-        "limit": 5,
+        "limit": 10,
         "categories": [
           "ai-news",
           "technology"
@@ -213,5 +213,18 @@
     "default_group_limit": 10
   },
   "email": null,
-  "webhook": null
+  "webhook": {
+    "enabled": true,
+    "url_env": "${LARK_NEWS_WEBHOOK_URL}",
+    "delivery": "summary",
+    "overview_position": "first",
+    "platform": "feishu",
+    "layout": "collapsible",
+    "fallback_layout": "markdown",
+    "languages": null,
+    "request_body": {
+      "text": "#{message_title}\n#{summary}"
+    },
+    "headers": ""
+  }
 }
