@@ -98,7 +98,7 @@ class TelegramScraper(BaseScraper):
             return None
 
         # Extract message text
-        text_el = msg_el.select_one("div.tgme_widget_message_text")
+        text_el = msg_el.select_one("div.tgme_widget_message_text.js-message_text")
         if not text_el:
             return None
 
