@@ -1,6 +1,8 @@
+import asyncio
 from datetime import datetime, timezone
 from unittest.mock import AsyncMock
 
+import httpx
 from bs4 import BeautifulSoup
 
 from src.models import TelegramChannelConfig, TelegramConfig
@@ -37,7 +39,7 @@ def test_parse_message_ignores_reply_preview_text() -> None:
 
     item = _scraper()._parse_message(
         msg,
-        "zaihuapd",
+        TelegramChannelConfig(channel="zaihuapd"),
         datetime(2026, 7, 6, 0, 0, tzinfo=timezone.utc),
     )
 
@@ -66,3 +68,52 @@ def test_parse_channel_html_keeps_supported_messages() -> None:
 
     assert len(items) == 1
     assert items[0].title == "Hello world"
+
+
+def test_fetch_channel_uses_alternate_domain_after_dns_failure() -> None:
+    requested_hosts = []
+    html = """
+    <div class="tgme_widget_message" data-post="channel/1">
+      <div class="tgme_widget_message_text js-message_text">Hello</div>
+      <time datetime="2026-07-06T10:00:00+00:00">10:00</time>
+    </div>
+    """
+
+    async def handler(request: httpx.Request) -> httpx.Response:
+        requested_hosts.append(request.url.host)
+        if request.url.host == "telegram.me":
+            raise httpx.ConnectError("Name or service not known", request=request)
+        return httpx.Response(200, text=html, request=request)
+
+    async def fetch_items():  # type: ignore[no-untyped-def]
+        async with httpx.AsyncClient(transport=httpx.MockTransport(handler)) as client:
+            scraper = TelegramScraper(
+                TelegramConfig(channels=[TelegramChannelConfig(channel="channel")]),
+                client,
+            )
+            return await scraper.fetch(datetime(2026, 7, 6, 0, 0, tzinfo=timezone.utc))
+
+    items = asyncio.run(fetch_items())
+
+    assert requested_hosts == ["telegram.me", "telegram.dog"]
+    assert len(items) == 1
+
+
+def test_fetch_raises_when_all_telegram_endpoints_fail() -> None:
+    async def handler(request: httpx.Request) -> httpx.Response:
+        raise httpx.ConnectError("Name or service not known", request=request)
+
+    async def fetch_items():  # type: ignore[no-untyped-def]
+        async with httpx.AsyncClient(transport=httpx.MockTransport(handler)) as client:
+            scraper = TelegramScraper(
+                TelegramConfig(channels=[TelegramChannelConfig(channel="channel")]),
+                client,
+            )
+            return await scraper.fetch(datetime(2026, 7, 6, 0, 0, tzinfo=timezone.utc))
+
+    try:
+        asyncio.run(fetch_items())
+    except RuntimeError as exc:
+        assert "All Telegram channels failed" in str(exc)
+    else:
+        raise AssertionError("Expected all Telegram endpoint failures to propagate")
