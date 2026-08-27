@@ -1,5 +1,4 @@
 {
-  "version": "1.0",
   "ai": {
     "provider": "deepseek",
     "provider_chain": null,
@@ -196,9 +195,17 @@
       "max_items": 30
     }
   },
-  "filtering": {
-    "ai_score_threshold": 7.0,
-    "time_window_hours": 24,
+  "processing": {
+    "profile_settings": {
+      "tech-news": {
+        "threshold": 7.0
+      }
+    }
+  },
+  "collection": {
+    "time_window_hours": 24
+  },
+  "digest": {
     "max_items": 10,
     "category_groups": {
       "cs": {
