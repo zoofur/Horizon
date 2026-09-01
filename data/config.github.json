@@ -197,6 +197,15 @@
   },
   "processing": {
     "profile_settings": {
+      "ai-creator": {
+        "threshold": 7.0
+      },
+      "finance-news": {
+        "threshold": 7.0
+      },
+      "tech-blog": {
+        "threshold": 7.0
+      },
       "tech-news": {
         "threshold": 7.0
       }
